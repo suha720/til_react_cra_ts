@@ -1,4 +1,4 @@
-import { TodoType } from "./types/todoType";
+import { TodoType } from '@todo-types/todoType';
 
 type TodoWriteProps = {
   setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
