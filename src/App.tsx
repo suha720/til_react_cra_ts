@@ -27,7 +27,7 @@ function App(): JSX.Element {
   const onToggle = (id: string): void => {
     console.log('onToggle : ', id);
     // 전달 받은 id 를 이용해서 map 으로 찾아서 completed 변경
-    const updatedTodos: TodoType[] = initialTodosTodos.map(item =>
+    const updatedTodos: TodoType[] = todos.map(item =>
       item.id === id ? { ...item, completed: !item.completed } : item,
     );
 
