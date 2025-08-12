@@ -6,13 +6,7 @@ import TodoWrite from './components/todos/TodoWrite';
 import { ITodoType, TodoType } from './components/todos/types/todoType';
 
 // 테스트를 위한 목업 데이터 (/src/api/dummy.ts)
-const initialTodosTodos: TodoType[] = [
-  { id: 'a', title: '제목 1 입니다.', completed: false },
-  { id: 'b', title: '제목 2 입니다.', completed: true },
-  { id: 'c', title: '제목 3 입니다.', completed: false },
-  { id: 'd', title: '제목 4 입니다.', completed: true },
-  { id: 'e', title: '제목 5 입니다.', completed: false },
-];
+const initialTodosTodos: TodoType[] = [];
 
 function App(): JSX.Element {
   // ts 자리
@@ -20,8 +14,14 @@ function App(): JSX.Element {
   const [todos, setTodos] = useState<(ITodoType | TodoType)[]>(initialTodosTodos);
 
   // todos 를 업데이트 하는 함수
-  const handleTodoUpdate = (): void => {
-    // setTodos(???)
+  const handleTodoUpdate = (newTodo: TodoType): void => {
+    // 1. 방법
+    // 아래는 prev : 현재 최신 state 를 나타냄
+    // setTodos(prev => [newTodo, ...prev]);
+
+    // 2. 방법
+    const arr: TodoType[] = [newTodo, ...todos];
+    setTodos(arr);
   };
   // todo 목록에서 실행할 함수들
   const onToggle = (id: string): void => {
@@ -39,8 +39,14 @@ function App(): JSX.Element {
     const arr = todos.filter(todo => todo.id !== id);
     setTodos(arr);
   };
-  const onEdit = (): void => {
-    console.log('a');
+  const onEdit = (id: string, newTitle: string): void => {
+    // 아이디와 새로운 타이틀을 알 수 있다.
+    // 아이디를 이용해서 해당 타이틀을 수정하고 업데이트 해보자.
+    const arr: TodoType[] = todos.map(item =>
+      item.id === id ? { ...item, title: newTitle } : item,
+    );
+
+    setTodos(arr);
   };
   // tsx 자리
   return (
