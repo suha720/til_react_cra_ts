@@ -15,6 +15,13 @@ npx create-react-app . --template typescript
 npm install react@18.2.0 react-dom@18.2.0
 ```
 
+- 버전이 안맞아서 삭제하고 재설치
+```bash
+npm uninstall @types/react @types/react-dom
+
+npm i -D -E @types/react@18.3.12 @types/react-dom@18.3.1
+```
+
 ## 2. ESLint / Prettier 호환 패키지 설치
 
 ```bash
